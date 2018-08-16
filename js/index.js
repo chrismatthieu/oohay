@@ -42,11 +42,11 @@ node.on('ready', () => {
     var j = xmlToJson(file.toString('utf8'))
     console.log(j);
 
-    $("#directory").append("<h3>" + j.category + "</h3>")
+    $("#directory").append("<b>" + j.category + "</b> -- ")
     var arrayLength = j.items.length;
     for (var i = 0; i < arrayLength; i++) {
         console.log(j.items[i]);
-        $("#directory").append(j.items[i].title + "<br>")
+        $("#directory").append(j.items[i].title + ", ")
 
     }
 
