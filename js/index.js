@@ -14,6 +14,8 @@ function parseURL(linkURL) {
 	return linkURL[0];
 };
 function xmlToJson(xml) {
+  var category = $(xml).find('channel > title').text()
+  console.log(category);
 	var obj = [];
 	$(xml).find('item').each(function(i) {
 		obj.push({
@@ -25,7 +27,7 @@ function xmlToJson(xml) {
 			"id": i+1
 		});
 	});
-	return {"items":obj};
+	return {"category": category, "items":obj};
 };
 
 node.on('ready', () => {
@@ -40,6 +42,7 @@ node.on('ready', () => {
     var j = xmlToJson(file.toString('utf8'))
     console.log(j);
 
+    $("#directory").append("<h3>" + j.category + "</h3>")
     var arrayLength = j.items.length;
     for (var i = 0; i < arrayLength; i++) {
         console.log(j.items[i]);
